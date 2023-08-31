@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fundo_main"
     tools:context=".Letras">
     tools:layout_editor_absoluteX="7dp"
     tools:layout_editor_absoluteY="-12dp">
@@ -377,6 +378,7 @@
         android:layout_marginEnd="8dp"
         android:background="#FFF9E3"
         android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
         android:tag="C"
         android:text="C"
         android:textSize="24sp"
@@ -385,8 +387,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button5"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="MissingConstraints"
-        android:onClick="onclick" />
+        tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
@@ -433,7 +434,7 @@
         android:layout_width="352dp"
         android:layout_height="68dp"
         android:fontFamily="@font/roboto_slab_black"
-        android:text="Escolha a letra que voce quer começa a aprender"
+        android:text="Escolha a letra que você quer começar a aprender:"
         android:textColor="#272525"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -441,5 +442,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_voltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#8C6FED"
+        android:fontFamily="@font/roboto_slab_black"
+        android:text="Voltar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toEndOf="@+id/button19"
+        app:layout_constraintTop_toBottomOf="@+id/button22" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

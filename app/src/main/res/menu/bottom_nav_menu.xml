@@ -4,11 +4,13 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/icone_conf"
-        android:title="Config." />
+        android:title="Config."
+        android:visible="true" />
 
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/icone_home"
+        android:iconTint="@color/black"
         android:title="@string/title_home" />
     <item
         android:id="@+id/navigation_notifications"

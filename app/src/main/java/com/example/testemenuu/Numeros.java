@@ -1,5 +1,7 @@
 package com.example.testemenuu;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,23 +12,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
-public class Letras extends AppCompatActivity {
-    String letraEscolhida = "", letraFeita = "";
+public class Numeros extends AppCompatActivity {
+    private String numeroEscolhido="", numeroFeito="";
     Identificador identificador = new Identificador(this);
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private Bitmap imageBitmap=null;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private Button bt_voltar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_letras);
-        bt_voltar = findViewById(R.id.bt_voltar);
+        setContentView(R.layout.activity_numeros);
 
-
+        bt_voltar = findViewById(R.id.bt_voltarN);
 
         bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,10 +31,13 @@ public class Letras extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
+
+
     public void onclick(View button) {
-        letraEscolhida = button.getTag().toString();
+        numeroEscolhido = button.getTag().toString();
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setMessage("Faça o sinal de acordo com a imagem abaixo")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -46,13 +46,13 @@ public class Letras extends AppCompatActivity {
                         tirarFoto();
                     }
                 })
-                .setView(createImageView(letraEscolhida));
+                .setView(createImageView(numeroEscolhido));
         builder.create().show();
 
     }
     private View createImageView(String letra) {
         ImageView imageView = new ImageView(this);
-        String imageName = "letra_" + letra.toLowerCase();
+        String imageName = "numero_" + letra.toLowerCase();
         int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
         imageView.setImageResource(resId);
         return imageView;
@@ -72,7 +72,7 @@ public class Letras extends AppCompatActivity {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
             if (imageBitmap==null){
-                AlertDialog.Builder janela = new AlertDialog.Builder(Letras.this);
+                AlertDialog.Builder janela = new AlertDialog.Builder(Numeros.this);
                 janela.setTitle("ERRO!!!");
                 janela.setMessage("Você deve tirar a foto e salvar ela antes de retornar");
                 janela.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
@@ -83,28 +83,27 @@ public class Letras extends AppCompatActivity {
                 });
                 janela.show();
             }else{
-                letraFeita = identificador.classificarImagem(imageBitmap,"letras");
+                numeroFeito = identificador.classificarImagem(imageBitmap,"numeros");
             }
         }
         comparador();
     }
     private void comparador(){
         ImageView imageView= new ImageView(this);
-        if (letraFeita.equals(letraEscolhida)) {
-            AlertDialog.Builder janela1 = new AlertDialog.Builder(Letras.this);
+        if (numeroFeito.equals(numeroEscolhido)) {
+            AlertDialog.Builder janela1 = new AlertDialog.Builder(Numeros.this);
             imageView.setImageResource(R.drawable.parabens);
             janela1.setView(imageView);
-            janela1.setMessage("Letra Feita: " + letraFeita + " Letra Escolhida: " + letraEscolhida);
+            janela1.setMessage("Numero Feito: " + numeroFeito + " Numero Escolhido: " + numeroEscolhido);
             janela1.setNeutralButton("ok", null);
             janela1.show();
         } else {
-            AlertDialog.Builder janela2 = new AlertDialog.Builder(Letras.this);
+            AlertDialog.Builder janela2 = new AlertDialog.Builder(Numeros.this);
             imageView.setImageResource(R.drawable.errou);
             janela2.setView(imageView);
-            janela2.setMessage("Letra Feita: " + letraFeita + " Letra Escolhida: " + letraEscolhida);
+            janela2.setMessage("Numero Feito: " + numeroFeito + " Letra Escolhido: " + numeroEscolhido);
             janela2.setNeutralButton("ok", null);
             janela2.show();
         }
     }
-
 }

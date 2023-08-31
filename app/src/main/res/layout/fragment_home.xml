@@ -2,44 +2,52 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentohome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fundo_main"
     tools:context=".ui.home.HomeFragment">
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/ib_numeros"
-        android:layout_width="125dp"
-        android:layout_height="131dp"
+        android:layout_width="137dp"
+        android:layout_height="158dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="56dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="#FEF9F3"
         android:shadowRadius="80"
         android:src="@drawable/bti_numeros"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="MissingConstraints" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/ib_letras"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="137dp"
+        android:layout_height="158dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/radius"
+        android:backgroundTint="#E4F1E7"
         android:src="@drawable/bti_letrasn"
         app:layout_constraintEnd_toStartOf="@+id/ib_numeros"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/ib_palavras"
-        android:layout_width="125dp"
-        android:layout_height="131dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="137dp"
+        android:layout_height="158dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/radius"
+        android:backgroundTint="#ECE9FE"
         android:shadowRadius="20"
         android:src="@drawable/bti_palavras"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.279"
+        app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib_letras" />
 
@@ -51,7 +59,7 @@
         android:fontFamily="@font/roboto_slab_black"
         android:shadowRadius="20"
         android:text="Bem Vindo!"
-        android:textColor="#423C3C"
+        android:textColor="#1E1E1E"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

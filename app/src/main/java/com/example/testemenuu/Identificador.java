@@ -31,7 +31,7 @@ public class Identificador {
         this.context = context;
     }
 
-    public String classificarImagem(Bitmap image){
+    public String classificarImagem(Bitmap image,String tipo){
         ImageProcessor imageProcessor =
                 new ImageProcessor.Builder()
                         .add(new ResizeOp(64, 64, ResizeOp.ResizeMethod.BILINEAR))
@@ -54,8 +54,12 @@ public class Identificador {
         // Initialise the model
         InterpreterApi tflite = null;
         try {
-            MappedByteBuffer tfliteModel;
-            tfliteModel = FileUtil.loadMappedFile(context, "modeloClassificadorSinais.tflite");
+            MappedByteBuffer tfliteModel = null;
+            if(tipo.equals("letras")){
+                tfliteModel = FileUtil.loadMappedFile(context, "modeloClassificadorSinais.tflite");
+            }else{
+                tfliteModel = FileUtil.loadMappedFile(context, "model_classificador_numeros.tflite");
+            }
             tflite = new InterpreterFactory().create(
                     tfliteModel, new InterpreterApi.Options());
         } catch (IOException e) {
