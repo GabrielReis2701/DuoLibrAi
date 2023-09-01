@@ -23,7 +23,8 @@ import java.util.Map;
 
 public class Identificador {
     private Context context;
-    final String ASSOCIATED_AXIS_LABELS = "labels.txt";
+    final String ASSOCIATED_AXIS_LABELSL = "labels.txt";
+    final String ASSOCIATED_AXIS_LABELSN = "labels_numero.txt";
     List<String> associatedAxisLabels = null;
     String letraComMaiorPrecisao="";
 
@@ -31,7 +32,7 @@ public class Identificador {
         this.context = context;
     }
 
-    public String classificarImagem(Bitmap image,String tipo){
+    public String classificarImagem(Bitmap image,int tipo){
         ImageProcessor imageProcessor =
                 new ImageProcessor.Builder()
                         .add(new ResizeOp(64, 64, ResizeOp.ResizeMethod.BILINEAR))
@@ -49,13 +50,20 @@ public class Identificador {
 
         // Create a container for the result and specify that this is a quantized model.
 // Hence, the 'DataType' is defined as UINT8 (8-bit unsigned integer)
-        TensorBuffer probabilityBuffer =
-                TensorBuffer.createFixedSize(new int[]{1, 21}, DataType.FLOAT32);
+        TensorBuffer probabilityBuffer;
+        if(tipo==1){
+             probabilityBuffer =
+                    TensorBuffer.createFixedSize(new int[]{1, 21}, DataType.FLOAT32);
+        }else{
+            probabilityBuffer =
+                    TensorBuffer.createFixedSize(new int[]{1, 10}, DataType.FLOAT32);
+        }
+        
         // Initialise the model
         InterpreterApi tflite = null;
         try {
             MappedByteBuffer tfliteModel = null;
-            if(tipo.equals("letras")){
+            if(tipo==1){
                 tfliteModel = FileUtil.loadMappedFile(context, "modeloClassificadorSinais.tflite");
             }else{
                 tfliteModel = FileUtil.loadMappedFile(context, "model_classificador_numeros.tflite");
@@ -73,7 +81,11 @@ public class Identificador {
 
 
         try {
-            associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELS);
+            if(tipo==1){
+                associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELSL);
+            }else{
+                associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELSN);
+            }
         } catch (IOException e) {
             Log.e("tfliteSupport", "Error reading label file", e);
         }

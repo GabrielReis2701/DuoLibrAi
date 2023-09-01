@@ -83,27 +83,30 @@ public class Numeros extends AppCompatActivity {
                 });
                 janela.show();
             }else{
-                numeroFeito = identificador.classificarImagem(imageBitmap,"numeros");
+                numeroFeito = identificador.classificarImagem(imageBitmap,2);
             }
         }
         comparador();
     }
     private void comparador(){
-        ImageView imageView= new ImageView(this);
         if (numeroFeito.equals(numeroEscolhido)) {
-            AlertDialog.Builder janela1 = new AlertDialog.Builder(Numeros.this);
-            imageView.setImageResource(R.drawable.parabens);
-            janela1.setView(imageView);
-            janela1.setMessage("Numero Feito: " + numeroFeito + " Numero Escolhido: " + numeroEscolhido);
-            janela1.setNeutralButton("ok", null);
-            janela1.show();
-        } else {
-            AlertDialog.Builder janela2 = new AlertDialog.Builder(Numeros.this);
-            imageView.setImageResource(R.drawable.errou);
-            janela2.setView(imageView);
-            janela2.setMessage("Numero Feito: " + numeroFeito + " Letra Escolhido: " + numeroEscolhido);
-            janela2.setNeutralButton("ok", null);
-            janela2.show();
+            mensagem(true);
+        }else{
+            mensagem(false);
         }
+    }
+    private void mensagem(boolean r){
+
+        ImageView imageView= new ImageView(this);
+        AlertDialog.Builder janela = new AlertDialog.Builder(Numeros.this);
+        if(r==true){
+            imageView.setImageResource(R.drawable.parabens);
+        }else{
+            imageView.setImageResource(R.drawable.errou);
+        }
+        janela.setView(imageView);
+        janela.setMessage("Numero Feito: " + numeroFeito + " Numero Escolhido: " + numeroEscolhido);
+        janela.setNeutralButton("ok", null);
+        janela.show();
     }
 }
