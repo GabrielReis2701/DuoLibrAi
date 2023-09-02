@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TesteMenuu"
         tools:targetApi="31">
         <activity
+            android:name=".Palavras"
+            android:exported="false" />
+        <activity
             android:name=".Numeros"
             android:exported="false" />
         <activity

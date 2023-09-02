@@ -12,32 +12,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class Numeros extends AppCompatActivity {
-    private String numeroEscolhido="", numeroFeito="";
+public class Palavras extends AppCompatActivity {
+    private String palavraEscolhida = "", palavraFeita = "";
     Identificador identificador = new Identificador(this);
-    private Bitmap imageBitmap=null;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Bitmap imageBitmap=null;
     private Button bt_voltar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numeros);
+        setContentView(R.layout.activity_palavras);
 
-        bt_voltar = findViewById(R.id.bt_voltarN);
+        bt_voltar = findViewById(R.id.bt_voltarP);
 
         bt_voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                finish(); //volta para a activity anterior
             }
         });
-
     }
 
-
-
+    //A função onclik está sendo chamada em todos os botões da activity_palavras
+    //Exibi um AlertDialog Com o sinal que o usuario deve fazer
     public void onclick(View button) {
-        numeroEscolhido = button.getTag().toString();
+        palavraEscolhida = button.getTag().toString(); //Essa variavel recebe uma Tag que foi definida em cada botão com sua respctiva letra, que é carrega aqui como uma string
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setNeutralButton("Voltar",null)
                 .setMessage("Faça o sinal de acordo com a imagem abaixo")
@@ -47,18 +46,20 @@ public class Numeros extends AppCompatActivity {
                         tirarFoto();
                     }
                 })
-                .setView(createImageView(numeroEscolhido));
+                .setView(createImageView(palavraEscolhida)); //chama a função createImageView passando a palavra que foi escolhida
         builder.create().show();
 
     }
+    //Essa função é responsavel por procurar a imagem de acordo com a palavra escolhida, para ser exibida no AlertDialog
     private View createImageView(String letra) {
         ImageView imageView = new ImageView(this);
-        String imageName = "numero_" + letra.toLowerCase();
+        String imageName = "palavra_" + letra.toLowerCase();
         int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
         imageView.setImageResource(resId);
         return imageView;
     }
 
+    //Função para carregar a camera do dispositivo e tirar uma foto
     private void tirarFoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -72,8 +73,8 @@ public class Numeros extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
-            if (imageBitmap==null){
-                AlertDialog.Builder janela = new AlertDialog.Builder(Numeros.this);
+            if (imageBitmap == null){
+                AlertDialog.Builder janela = new AlertDialog.Builder(Palavras.this);
                 janela.setTitle("ERRO!!!");
                 janela.setMessage("Você deve tirar a foto e salvar ela antes de retornar");
                 janela.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
@@ -84,30 +85,33 @@ public class Numeros extends AppCompatActivity {
                 });
                 janela.show();
             }else{
-                numeroFeito = identificador.classificarImagem(imageBitmap,2);
+                palavraFeita = identificador.classificarImagem(imageBitmap,3);
+                System.out.println(imageBitmap);
             }
         }
         comparador();
     }
+    //Função para comparar a Palavra feita com a Palavra Escolhida
     private void comparador(){
-        if (numeroFeito.equals(numeroEscolhido)) {
+        if (palavraFeita.equals(palavraEscolhida)) {
             mensagem(true);
         }else{
             mensagem(false);
         }
     }
+    //Função para exibir uma Mensagem em Formato AlertDialog para informar se o usuario errou ou acertou, é chamada na função comparador()
     private void mensagem(boolean r){
 
         ImageView imageView= new ImageView(this);
-        AlertDialog.Builder janela = new AlertDialog.Builder(Numeros.this);
+        AlertDialog.Builder janela = new AlertDialog.Builder(Palavras.this);
         if(r==true){
             imageView.setImageResource(R.drawable.parabens);
         }else{
             imageView.setImageResource(R.drawable.errou);
         }
         janela.setView(imageView);
-        janela.setMessage("Numero Feito: " + numeroFeito + " Numero Escolhido: " + numeroEscolhido);
-        janela.setNeutralButton("ok", null);
+        janela.setMessage("Palavra Feita: " + palavraFeita + " Palavra Escolhida: " + palavraEscolhida);
+        janela.setPositiveButton("Ok", null);
         janela.show();
     }
 }

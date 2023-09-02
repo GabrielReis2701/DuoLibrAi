@@ -25,6 +25,7 @@ public class Identificador {
     private Context context;
     final String ASSOCIATED_AXIS_LABELSL = "labels.txt";
     final String ASSOCIATED_AXIS_LABELSN = "labels_numero.txt";
+    final String ASSOCIATED_AXIS_LABELSP = "labels_palavras.txt";
     List<String> associatedAxisLabels = null;
     String letraComMaiorPrecisao="";
 
@@ -33,6 +34,8 @@ public class Identificador {
     }
 
     public String classificarImagem(Bitmap image,int tipo){
+
+        //configurações para redimensionar a imagem e normalizar a imagem
         ImageProcessor imageProcessor =
                 new ImageProcessor.Builder()
                         .add(new ResizeOp(64, 64, ResizeOp.ResizeMethod.BILINEAR))
@@ -50,6 +53,7 @@ public class Identificador {
 
         // Create a container for the result and specify that this is a quantized model.
 // Hence, the 'DataType' is defined as UINT8 (8-bit unsigned integer)
+        //Responsavel por atribuir o numeros de labels que existe no modelo que sera utilizado
         TensorBuffer probabilityBuffer;
         if(tipo==1){
              probabilityBuffer =
@@ -64,9 +68,11 @@ public class Identificador {
         try {
             MappedByteBuffer tfliteModel = null;
             if(tipo==1){
-                tfliteModel = FileUtil.loadMappedFile(context, "modeloClassificadorSinais.tflite");
+                tfliteModel = FileUtil.loadMappedFile(context, "modeloClassificadorSinais.tflite");// carrega o modelo classificador de letras
+            }else if(tipo==2){
+                tfliteModel = FileUtil.loadMappedFile(context, "model_classificador_numeros.tflite");// carrega o modelo classificador de Numeros
             }else{
-                tfliteModel = FileUtil.loadMappedFile(context, "model_classificador_numeros.tflite");
+                tfliteModel = FileUtil.loadMappedFile(context, "model_classificador_palavras.tflite");// carrega o modelo classificador de Palavras
             }
             tflite = new InterpreterFactory().create(
                     tfliteModel, new InterpreterApi.Options());
@@ -82,9 +88,11 @@ public class Identificador {
 
         try {
             if(tipo==1){
-                associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELSL);
+                associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELSL);//carrega o label de letras
+            }else if(tipo==2){
+                associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELSN);//carrega o label de Numeros
             }else{
-                associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELSN);
+                associatedAxisLabels = FileUtil.loadLabels(context, ASSOCIATED_AXIS_LABELSP);//carrega o label de Palavras
             }
         } catch (IOException e) {
             Log.e("tfliteSupport", "Error reading label file", e);

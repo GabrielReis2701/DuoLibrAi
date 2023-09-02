@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.testemenuu.Letras;
 
 import com.example.testemenuu.Numeros;
+import com.example.testemenuu.Palavras;
 import com.example.testemenuu.databinding.FragmentHomeBinding;
 
 
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment {
         ImageButton ib_numeros = binding.ibNumeros;
         ImageButton ib_palavras = binding.ibPalavras;
 
-
+        //Chama a atividade das Letras
         ib_letras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //Chama a atividade dos Numeros
         ib_numeros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,21 +55,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //Chama a atividade das Palavras
         ib_palavras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder janela = new AlertDialog.Builder(getContext());
-                janela.setTitle("Esta fffuncionando");
-                janela.setMessage("Botão funcionando");
-                janela.setNeutralButton("ok",null);
-                janela.create();
-                janela.show();
+                Intent i = new Intent(getActivity(), Palavras.class);
+                startActivity(i);
             }
         });
 
-
-       // final TextView textView = binding.textHome;
-       // homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
@@ -77,11 +73,4 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-//    private void replaceFragment() {
-//        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.nav_host_fragment_activity_main, new LetraFragment());
-//        transaction.addToBackStack(null);
-//        getActivity().getSupportFragmentManager().popBackStack();
-//        transaction.commit();
-//    }
 }

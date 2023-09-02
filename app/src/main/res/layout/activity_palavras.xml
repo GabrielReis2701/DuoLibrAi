@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundo_main"
+    tools:context=".Palavras">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="354dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_slab_black"
+        android:text="Escolha a palavra que você quer começar a aprender:"
+        android:textColor="#272525"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button41"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="105dp"
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="adulto"
+        android:text="adulto"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button32"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="28dp"
+
+        android:layout_marginTop="20dp"
+
+        android:layout_marginEnd="105dp"
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="casa"
+        android:text="casa"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toStartOf="@+id/button39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button41"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button37"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+
+
+        android:onClick="onclick"
+        android:tag="lei"
+        android:text="lei"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button39"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button34"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="palavra"
+        android:text="palavra"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toStartOf="@+id/button36"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button38"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button40"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="28dp"
+
+        android:background="#FFF9E3"
+
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="america"
+        android:text="america"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button36"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+
+
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="pedra"
+        android:text="pedra"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button37"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button38"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="105dp"
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="juntos"
+        android:text="juntos"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toStartOf="@+id/button37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button32"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button35"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+
+        android:tag="verbo"
+        android:text="verbo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button36"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button39"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+
+
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="gasolina"
+        android:text="gasolina"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button40"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button33"
+        android:layout_width="125dp"
+        android:layout_height="76dp"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFF9E3"
+        android:fontFamily="@font/roboto_slab_black"
+        android:onClick="onclick"
+        android:tag="pequeno"
+        android:text="pequeno"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:cornerRadius="0px"
+        app:layout_constraintEnd_toStartOf="@+id/button35"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button34"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_voltarP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#8C6FED"
+        android:text="voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

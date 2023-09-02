@@ -40,8 +40,9 @@ public class Letras extends AppCompatActivity {
     public void onclick(View button) {
         letraEscolhida = button.getTag().toString();
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setNeutralButton("Voltar",null)
                 .setMessage("Faça o sinal de acordo com a imagem abaixo")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         tirarFoto();
@@ -107,7 +108,7 @@ public class Letras extends AppCompatActivity {
             imageView.setImageResource(R.drawable.errou);
         }
         janela.setView(imageView);
-        janela.setMessage("Numero Feito: " + letraFeita + " Numero Escolhido: " + letraEscolhida);
+        janela.setMessage("Letra Feita: " + letraFeita + " Letra Escolhida: " + letraEscolhida);
         janela.setPositiveButton("Ok", null);
         janela.show();
     }
