@@ -12,21 +12,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.testemenuu.ui.config.ConfigFragment;
 
 
-public class Letras extends AppCompatActivity {
+public class Letras extends AppCompatActivity implements ConfigFragment.OnImageChangeListener {
     String letraEscolhida = "", letraFeita = "";
     Identificador identificador = new Identificador(this);
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private Bitmap imageBitmap=null;
     private Button bt_voltar;
+    private ConstraintLayout cl;
 
+    public Letras(){}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letras);
         bt_voltar = findViewById(R.id.bt_voltar);
-
+        cl = findViewById(R.id.layout_letra);
 
 
         bt_voltar.setOnClickListener(new View.OnClickListener() {
@@ -113,4 +118,8 @@ public class Letras extends AppCompatActivity {
         janela.show();
     }
 
+    @Override
+    public void onImageChange(int imageResId) {
+        cl.setBackgroundResource(imageResId);
+    }
 }
