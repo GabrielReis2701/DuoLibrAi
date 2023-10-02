@@ -4,63 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#E4D4D4">
+    android:background="@drawable/borda">
 
     <TextView
         android:id="@+id/tv_titulo"
-        android:layout_width="210dp"
-        android:layout_height="33dp"
+        android:layout_width="265dp"
+        android:layout_height="36dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textSize="20sp"
+        android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_texto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.303"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_texto"
-        android:layout_width="212dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="265dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/iv_icone"
-        app:layout_constraintHorizontal_bias="0.753"
+        app:layout_constraintEnd_toStartOf="@+id/iv_icone_item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titulo"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/iv_icone"
+        android:id="@+id/iv_icone_item"
         android:layout_width="102dp"
         android:layout_height="86dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toEndOf="@+id/tv_titulo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19"
+        app:layout_constraintVertical_bias="0.487"
         tools:srcCompat="@drawable/mascote" />
 
-    <TextView
-        android:id="@+id/tv_tempo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="5dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_texto"
-        app:layout_constraintTop_toBottomOf="@+id/iv_icone"
-        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

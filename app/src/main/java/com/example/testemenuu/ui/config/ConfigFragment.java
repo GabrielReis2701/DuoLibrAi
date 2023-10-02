@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,12 +25,17 @@ import com.example.testemenuu.databinding.FragmentConfigBinding;
 import com.example.testemenuu.databinding.FragmentHomeBinding;
 import com.example.testemenuu.ui.home.HomeFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ConfigFragment extends Fragment {
 
 
     private FragmentConfigBinding binding;
     private HomeFragment homeBinding = new HomeFragment();
     OnImageChangeListener mCallback;
+    private Spinner spinner;
+    private List<SpinnerItem> spinnerItems = new ArrayList<>();
 
     // Interface para ser implementada pela Activity
     public interface OnImageChangeListener {
@@ -57,14 +65,19 @@ public class ConfigFragment extends Fragment {
 
         binding = FragmentConfigBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        ImageButton bt_acessivel = binding.btAcessivel;
-        ConstraintLayout conf = binding.layoutConfig;
-
+        Button bt_acessivel = binding.btAcessivel;
+        spinner = binding.spinner;
+        CarregarSpinner();
+        ArrayAdapter<SpinnerItem> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, spinnerItems);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
 
         bt_acessivel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onImageChange(R.drawable.fundo_3);
+                SpinnerItem selectedItem = (SpinnerItem) spinner.getSelectedItem();
+                int imageResId = selectedItem.getImageResId();
+                mCallback.onImageChange(imageResId);
             }
         });
 
@@ -76,5 +89,10 @@ public class ConfigFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    public void CarregarSpinner(){
+        spinnerItems.add(new SpinnerItem("Papel de Parede 1", getResources().getIdentifier("fundo_main", "drawable", getActivity().getPackageName())));
+        spinnerItems.add(new SpinnerItem("Papel de Parede 2", getResources().getIdentifier("fundo_2", "drawable", getActivity().getPackageName())));
+        spinnerItems.add(new SpinnerItem("Papel de Parede 3", getResources().getIdentifier("fundo_3", "drawable", getActivity().getPackageName())));
     }
 }

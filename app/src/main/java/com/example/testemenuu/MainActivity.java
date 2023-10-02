@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.example.testemenuu.database.CriarConexao;
 import com.example.testemenuu.ui.config.ConfigFragment;
-import com.example.testemenuu.ui.home.HomeFragment;
 import com.example.testemenuu.ui.notifications.NotificationService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -56,12 +55,10 @@ public class MainActivity extends AppCompatActivity implements ConfigFragment.On
         conexao.conectar();
     }
 
-    public void updateImage(int imageResId) {
-        // Atualize o plano de fundo do ConstraintLayout
-
-    }
 
     @Override
     public void onImageChange(int imageResId) {
-        cl.setBackgroundResource(imageResId);    }
+        cl.setBackgroundResource(imageResId);
+
+    }
 }
