@@ -40,7 +40,7 @@ public class NotificationService extends Service {
     Timer timer;
     TimerTask timerTask;
     String TAG = "Timers";
-    int Your_X_SECS = 1200;
+    int Your_X_SECS = 60;
     NotificacaoRepo notificacaoRepo;
     Notificacao notificacao;
     Notificacao notificacao2;
@@ -102,7 +102,7 @@ public class NotificationService extends Service {
         initializeTimerTask();
 
         //schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
-        timer.schedule(timerTask, Your_X_SECS * 1000, Your_X_SECS * 1000); //
+        timer.schedule(timerTask, 6000, Your_X_SECS * 1000); //
         //timer.schedule(timerTask, 5000,1000); //
     }
 

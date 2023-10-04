@@ -1,10 +1,13 @@
 package com.example.testemenuu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,16 +15,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.testemenuu.database.CriarConexao;
+import com.example.testemenuu.database.DadosOpenHelper;
+import com.example.testemenuu.database.entidades.NotificacaoRepo;
+
 public class Numeros extends AppCompatActivity {
     private String numeroEscolhido="", numeroFeito="";
     Identificador identificador = new Identificador(this);
     private Bitmap imageBitmap=null;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private Button bt_voltar;
+    private ConstraintLayout cl;
+    private NotificacaoRepo notificacaoRepo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numeros);
+        cl = findViewById(R.id.layout_numero);
+        CriarConexao conexao = new CriarConexao(this);
+        conexao.conectar();
+        SQLiteOpenHelper dbHelper = new DadosOpenHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        notificacaoRepo = new NotificacaoRepo(db);
+        updateImage();
 
         bt_voltar = findViewById(R.id.bt_voltarN);
 
@@ -40,7 +56,7 @@ public class Numeros extends AppCompatActivity {
         numeroEscolhido = button.getTag().toString();
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setNeutralButton("Voltar",null)
-                .setMessage("Faça o sinal de acordo com a imagem abaixo")
+                .setMessage("Faça o sinal de acordo com a imagem abaixo\nObs: tire a foto em um ambiente com claridade e sem objetos no fundo")
                 .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -110,4 +126,10 @@ public class Numeros extends AppCompatActivity {
         janela.setNeutralButton("ok", null);
         janela.show();
     }
+    public void updateImage(){
+        String imageResId = notificacaoRepo.buscarPapel();
+        int resId = getResources().getIdentifier(imageResId, "drawable", getPackageName());
+        cl.setBackgroundResource(resId);
+    }
+
 }

@@ -2,9 +2,13 @@ package com.example.testemenuu;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import com.example.testemenuu.database.CriarConexao;
+import com.example.testemenuu.database.DadosOpenHelper;
+import com.example.testemenuu.database.entidades.NotificacaoRepo;
 import com.example.testemenuu.ui.config.ConfigFragment;
 import com.example.testemenuu.ui.notifications.NotificationService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements ConfigFragment.On
 
     private ActivityMainBinding binding;
     private ConstraintLayout cl;
+    private NotificacaoRepo notificacaoRepo;
     Context context = this;
 
     CriarConexao conexao = new CriarConexao(context);
@@ -33,11 +38,20 @@ public class MainActivity extends AppCompatActivity implements ConfigFragment.On
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        cl = findViewById(R.id.container_main); // Mova esta linha para depois de setContentView()
-
         Intent intent = new Intent(this, NotificationService.class);
         startService(intent);
+        SQLiteOpenHelper dbHelper = new DadosOpenHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        notificacaoRepo = new NotificacaoRepo(db);
+        cl = findViewById(R.id.container_main);
+        setConexao();
+        mudarImagem();
+
+
+
+         // Mova esta linha para depois de setContentView()
+
+
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -49,16 +63,21 @@ public class MainActivity extends AppCompatActivity implements ConfigFragment.On
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        setConexao();
+
     }
     public void setConexao(){
         conexao.conectar();
     }
 
-
+    public void mudarImagem(){
+        String imageResId = notificacaoRepo.buscarPapel();
+        int resId = getResources().getIdentifier(imageResId, "drawable", getPackageName());
+        cl.setBackgroundResource(resId);
+    }
     @Override
-    public void onImageChange(int imageResId) {
-        cl.setBackgroundResource(imageResId);
+    public void onImageChange(String imageResId) {
+        int resId = getResources().getIdentifier(imageResId, "drawable", getPackageName());
+        cl.setBackgroundResource(resId);
 
     }
 }

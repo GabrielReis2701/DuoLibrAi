@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DadosOpenHelper extends SQLiteOpenHelper {
     public DadosOpenHelper(Context context) {
-        super(context, "DADOSNotifica", null, 9);
+        super(context, "DADOSNotificacao", null, 9);
     }
 
     @Override
@@ -14,6 +14,9 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL(ScriptDDL.getCreateTable());
         db.execSQL(ScriptDDL.getCreateTableMensagens());
+        db.execSQL(ScriptDDL.getCreateTablePapel());
+
+        db.execSQL(ScriptDDL.setPapel());
     }
 
     @Override

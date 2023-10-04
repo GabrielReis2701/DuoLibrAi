@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "562556336263",
+    "project_id": "app-libras-99a11",
+    "storage_bucket": "app-libras-99a11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562556336263:android:151a53fe3031490f7c2022",
+        "android_client_info": {
+          "package_name": "com.example.testemenuu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSqDoN9S3IdTIa65y1lelhw-qBEk89YWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

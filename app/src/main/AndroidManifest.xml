@@ -6,8 +6,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +21,9 @@
         android:theme="@style/Theme.TesteMenuu"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".Palavras"
             android:exported="false" />
         <activity
@@ -29,7 +33,7 @@
             android:name=".Letras"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity2"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -38,7 +42,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".ui.notifications.NotificationService"></service>
+
+        <service android:name=".ui.notifications.NotificationService" />
     </application>
 
 </manifest>

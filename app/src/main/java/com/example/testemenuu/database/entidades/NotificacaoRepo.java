@@ -10,6 +10,7 @@ import java.util.List;
 public class NotificacaoRepo {
 
     private SQLiteDatabase conexao;
+    private String nome = "";
 
     public NotificacaoRepo(SQLiteDatabase conexao){
         this.conexao=conexao;
@@ -20,6 +21,11 @@ public class NotificacaoRepo {
         cv.put("DESCRICAO",notificacao.descricao);
         cv.put("IMAGEM",notificacao.imagem);
         conexao.insertOrThrow("NOTIFICACAO",null,cv);
+    }
+    public void InserirPapel(String idPapel){
+        ContentValues cv = new ContentValues();
+        cv.put("IDPAPEL",idPapel);
+        conexao.insertOrThrow("PAPEL",null,cv);
     }
     public void InserirMensagem(Notificacao notificacao){
         ContentValues cv = new ContentValues();
@@ -32,6 +38,10 @@ public class NotificacaoRepo {
         String[] param = new String[1];
         param[0] = String.valueOf(codigo);
         conexao.delete("NOTIFICACAO","CODIGO = ?",param);
+    }
+    public void ExcluirPapel(){
+        String deleteQuery = "DELETE FROM PAPEL WHERE CODIGO = (SELECT MIN(CODIGO) FROM PAPEL)";
+        conexao.execSQL(deleteQuery);
     }
 
     public void Excluir(){
@@ -67,6 +77,19 @@ public class NotificacaoRepo {
             }while(resultado.moveToNext());
         }
         return noticacoes;
+    }
+    public String buscarPapel(){
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT IDPAPEL ");
+        sql.append("FROM PAPEL ");
+        sql.append("WHERE CODIGO = (SELECT MAX(CODIGO) FROM PAPEL)");
+        Cursor resultado = conexao.rawQuery(sql.toString(),null);
+        resultado.moveToFirst();
+        nome = resultado.getString(resultado.getColumnIndexOrThrow("IDPAPEL"));
+
+        return nome;
+
     }
     public List<Notificacao> buscarMensagens(){
         List<Notificacao> noticacoes = new ArrayList<Notificacao>();

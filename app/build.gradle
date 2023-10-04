@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -40,6 +41,9 @@ dependencies {
     implementation 'org.tensorflow:tensorflow-lite:2.13.0'
     implementation 'org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0'
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.12.0'
+    implementation platform('com.google.firebase:firebase-bom:32.3.1') //trabalhos futuros
+    implementation 'com.google.firebase:firebase-analytics' //trabalhos futuros
+    implementation 'com.google.firebase:firebase-messaging' //trabalhos futuros
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
